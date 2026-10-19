@@ -1,0 +1,8 @@
+{
+  "name": "tic-tac-toe-next",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Feature-rich browser Tic-Tac-Toe with AI and room-based online multiplayer",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101321"><meta name="description" content="A polished Tic-Tac-Toe game with smart AI, themes, match stats, sound and online rooms.">
+  <title>Tic-Tac-Toe — Next</title><link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Tic Tac Toe home"><span class="brand-mark">✳</span><span>TIC<span class="brand-dash">·</span>TAC<span class="brand-dash">·</span>TOE<small>NEXT EDITION</small></span></a>
+      <div class="top-actions"><button class="icon-btn" id="soundToggle" title="Toggle sound" aria-label="Toggle sound">♫ <span>Sound</span></button><button class="icon-btn" id="musicToggle" title="Toggle background music" aria-label="Toggle music">♪ <span>Music</span></button><button class="icon-btn" id="themeToggle" title="Switch theme" aria-label="Switch theme">☼ <span>Theme</span></button></div>
+    </header>
+    <section class="hero"><div class="eyebrow"><span class="live-dot"></span> THE CLASSIC, REIMAGINED</div><h1>One board.<br><span>Endless rematches.</span></h1><p>A little strategy, a little luck, and one more game. Choose your mode and make your move.</p></section>
+    <section class="layout">
+      <div class="game-column">
+        <section class="panel game-panel">
+          <div class="game-toolbar"><div><span class="section-kicker">PLAY MODE</span><div class="mode-tabs" role="group" aria-label="Game mode"><button class="mode-tab active" data-mode="ai">vs Computer</button><button class="mode-tab" data-mode="local">2 Players</button><button class="mode-tab" data-mode="online">Online</button></div></div><button class="subtle-btn" id="newGameBtn">↻ <span>New game</span></button></div>
+          <div class="ai-settings" id="aiSettings"><label for="difficulty">AI difficulty</label><select id="difficulty"><option value="easy">Easy · Casual</option><option value="medium">Medium · Tactical</option><option value="hard" selected>Hard · Unbeatable</option></select></div>
+          <div class="online-settings hidden" id="onlineSettings"><div class="online-actions"><button class="primary-btn" id="createRoomBtn">＋ Create room</button><div class="join-row"><input id="roomCodeInput" maxlength="6" placeholder="ROOM CODE" aria-label="Room code"><button class="secondary-btn" id="joinRoomBtn">Join</button></div></div><p class="room-note" id="onlineNote">Create a room and share its code with a friend.</p></div>
+          <div class="match-status"><div class="status-copy"><span class="status-pip" id="statusPip"></span><div><strong id="statusTitle">Your move</strong><small id="statusSubtitle">You are playing as X</small></div></div><div class="turn-badge" id="turnBadge"><span class="mini-x">X</span> TO MOVE</div></div>
+          <div class="board-wrap"><div class="board" id="board" role="grid" aria-label="Tic-Tac-Toe board"></div><div class="win-burst" id="winBurst" aria-hidden="true">✦</div></div>
+          <div class="board-footer"><span><span class="keycap">X</span> First move</span><span class="board-footer-right" id="roundLabel">ROUND 01</span></div>
+          <div class="result-banner hidden" id="resultBanner"><span class="result-icon" id="resultIcon">✦</span><div><strong id="resultTitle">Victory!</strong><small id="resultText">A perfect finish.</small></div><button class="primary-btn" id="playAgainBtn">Play again ↗</button></div>
+        </section>
+        <section class="panel customization"><div class="panel-heading"><div><span class="section-kicker">YOUR SPACE</span><h2>Make it yours</h2></div><span class="heading-icon">✳</span></div><div class="custom-row"><div><strong>Accent color</strong><small>Give your board a signature look.</small></div><div class="swatches" role="group" aria-label="Accent color"><button class="swatch selected" data-color="#a78bfa" style="--swatch:#a78bfa" aria-label="Violet"></button><button class="swatch" data-color="#4adeb5" style="--swatch:#4adeb5" aria-label="Mint"></button><button class="swatch" data-color="#fb923c" style="--swatch:#fb923c" aria-label="Orange"></button><button class="swatch" data-color="#60a5fa" style="--swatch:#60a5fa" aria-label="Blue"></button><button class="swatch" data-color="#fb7185" style="--swatch:#fb7185" aria-label="Rose"></button></div></div><div class="custom-row reduced-motion-row"><div><strong>Reduced motion</strong><small>Keep transitions subtle.</small></div><label class="switch"><input type="checkbox" id="motionToggle"><span></span></label></div></section>
+      </div>
+      <aside class="side-column">
+        <section class="panel score-panel"><div class="panel-heading"><div><span class="section-kicker">MATCH SCORE</span><h2>Current session</h2></div><span class="heading-icon">⌁</span></div><div class="score-grid"><div class="score-card score-x"><span class="score-symbol">×</span><small>PLAYER X</small><strong id="scoreX">0</strong><span class="score-caption">Wins</span></div><div class="score-card score-draw"><span class="score-symbol">＝</span><small>DRAWS</small><strong id="scoreDraw">0</strong><span class="score-caption">Tied games</span></div><div class="score-card score-o"><span class="score-symbol">○</span><small>PLAYER O</small><strong id="scoreO">0</strong><span class="score-caption">Wins</span></div></div><button class="text-btn" id="resetScoresBtn">Reset session scores ↗</button></section>
+        <section class="panel stats-panel"><div class="panel-heading"><div><span class="section-kicker">YOUR TRACK RECORD</span><h2>All-time stats</h2></div><span class="heading-icon">◷</span></div><div class="stats-grid"><div><strong id="statPlayed">0</strong><small>Played</small></div><div><strong id="statWinRate">0%</strong><small>Win rate</small></div><div><strong id="statStreak">0</strong><small>Best streak</small></div></div><div class="history-head"><span>RECENT MATCHES</span><button class="text-btn tiny" id="clearHistoryBtn">Clear</button></div><div class="history-list" id="historyList"><div class="empty-history"><span>⌁</span><p>Your next match starts your story.</p></div></div></section>
+        <section class="tip-card"><span class="tip-spark">✦</span><div><strong>Think two moves ahead.</strong><p>Control the center, watch the corners, and never ignore a possible fork.</p></div></section>
+      </aside>
+    </section>
+    <footer><span>MADE FOR THE LOVE OF THE GAME</span><span>NO ADS. JUST Xs & Os. <b>✳</b></span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body></html>
